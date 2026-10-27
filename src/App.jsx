@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BookingFlow from "./components/BookingFlow";
 import PromotionPopup from "./components/PromotionPopup";
+import StickyBookBar from "./components/StickyBookBar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Services from "./sections/Services";
@@ -45,6 +46,7 @@ export default function App() {
         />
       )}
 
+      <StickyBookBar onBookClick={() => openBooking()} />
       <PromotionPopup onBookClick={() => openBooking()} />
     </>
   );

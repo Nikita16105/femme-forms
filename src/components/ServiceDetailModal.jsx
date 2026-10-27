@@ -1,7 +1,10 @@
 import { formatPrice } from "../utils/format";
+import useScrollLock from "../hooks/useScrollLock";
 import "./ServiceDetailModal.css";
 
 export default function ServiceDetailModal({ service, onClose, onBook }) {
+  useScrollLock(Boolean(service));
+
   if (!service) return null;
 
   return (

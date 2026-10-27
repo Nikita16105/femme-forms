@@ -43,7 +43,48 @@
 }
 
 @media (max-width: 600px) {
+  .reviews__filters {
+    margin-top: 24px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .reviews__filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews__filter {
+    white-space: nowrap;
+    min-height: 40px;
+  }
+
+  /* На телефоне отзывы — горизонтальная лента со «залипанием» карточек */
   .reviews__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: 12px;
+    margin: 24px -20px 0;
+    padding: 2px 20px 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .reviews__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews__grid > .review-card {
+    flex: 0 0 84%;
+    max-width: 340px;
+    height: auto;
+    scroll-snap-align: start;
+  }
+
+  .reviews__more {
+    margin-top: 16px;
   }
 }

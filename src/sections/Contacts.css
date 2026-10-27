@@ -43,6 +43,7 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   border: 1px solid var(--line);
+  border-bottom: none;
   /* Лёгкое приглушение цвета карты под общую палитру сайта */
   filter: sepia(8%) saturate(85%) brightness(0.98);
 }
@@ -51,5 +52,36 @@
   .contacts__grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+}
+
+.contacts__map-link {
+  display: block;
+  text-align: center;
+  padding: 14px 12px;
+  border: 1px solid var(--line);
+  border-top: none;
+  font-size: 14px;
+  color: var(--text-soft);
+  background: var(--milk);
+  transition: color 0.25s var(--ease);
+}
+
+.contacts__map-link:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 860px) {
+  .contacts__list li {
+    padding-bottom: 14px;
+  }
+
+  .contacts__list li a {
+    display: inline-block;
+    padding: 4px 0;
+  }
+
+  .contacts__map-frame {
+    aspect-ratio: 1 / 1;
   }
 }

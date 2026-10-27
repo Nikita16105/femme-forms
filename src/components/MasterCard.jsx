@@ -29,7 +29,7 @@ export default function MasterCard({ master, reviewCount, onSelect }) {
         )}
 
         <button className="btn btn-outline master-card__btn" onClick={() => onSelect(master)}>
-          Записаться к {master.name}
+          Записаться
         </button>
       </div>
     </article>

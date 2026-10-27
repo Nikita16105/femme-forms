@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import services, { CATEGORIES } from "../data/services";
 import masters from "../data/masters";
 import BookingStep from "./BookingStep";
 import { formatPrice } from "../utils/format";
+import useScrollLock from "../hooks/useScrollLock";
 import "./BookingFlow.css";
 
 // Демонстрационные тайм-слоты. В будущем заменить на данные реального расписания.
@@ -59,12 +60,13 @@ export default function BookingFlow({ initialService, initialMaster, onClose }) 
     return { year: d.getFullYear(), month: d.getMonth() };
   });
 
+  useScrollLock(true);
+
+  // При переходе между шагами возвращаем содержимое окна к началу
+  const bodyRef = useRef(null);
   useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
+    if (bodyRef.current) bodyRef.current.scrollTop = 0;
+  }, [step, confirmed]);
 
   const canGoNext = () => {
     if (step === 1) return !!service;
@@ -119,7 +121,7 @@ export default function BookingFlow({ initialService, initialMaster, onClose }) 
           </div>
         )}
 
-        <div className="booking-panel__body">
+        <div className="booking-panel__body" ref={bodyRef}>
           {confirmed ? (
             <ConfirmedScreen
               service={service}

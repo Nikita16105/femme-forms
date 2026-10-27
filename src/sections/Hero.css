@@ -1,5 +1,6 @@
 .hero {
   position: relative;
+  min-height: 100vh;
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
@@ -36,8 +37,15 @@
 .hero__content {
   position: relative;
   z-index: 1;
+  width: 100%;
   padding-bottom: 96px;
   padding-top: 160px;
+}
+
+/* Текст выровнен по тому же левому краю, что и логотип в шапке */
+.hero__title,
+.hero__word,
+.hero__text {
   max-width: 680px;
 }
 
@@ -88,7 +96,42 @@
 
 @media (max-width: 640px) {
   .hero__content {
-    padding-top: 130px;
-    padding-bottom: 64px;
+    padding-top: 120px;
+    padding-bottom: 48px;
   }
+
+  .hero__title {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  /* <br> в заголовке на узком экране даёт некрасивые рваные строки */
+  .hero__title br {
+    display: none;
+  }
+
+  .hero__text {
+    font-size: 15.5px;
+    margin-top: 18px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+/* Главная кнопка на тёмном видео — светлая, чтобы была заметна */
+.hero .btn-primary {
+  background: var(--ivory);
+  color: var(--brown);
+}
+
+.hero .btn-primary:hover {
+  background: var(--sand);
 }

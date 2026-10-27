@@ -5,16 +5,25 @@
   gap: 28px;
 }
 
+/* Карточка внутри Reveal тянется на всю высоту ячейки */
+.masters__grid > .reveal {
+  display: flex;
+}
+
+.masters__grid > .reveal > .master-card {
+  flex: 1;
+}
+
 @media (max-width: 980px) {
   .masters__grid {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 640px;
+    gap: 20px;
   }
 }
 
 @media (max-width: 560px) {
   .masters__grid {
-    grid-template-columns: 1fr;
-    max-width: 420px;
+    margin-top: 28px;
+    gap: 12px;
   }
 }

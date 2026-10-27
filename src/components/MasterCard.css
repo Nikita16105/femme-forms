@@ -66,3 +66,37 @@
   margin-top: 12px;
   align-self: flex-start;
 }
+
+@media (max-width: 560px) {
+  .master-card__photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .master-card__body {
+    padding: 16px 14px 16px;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .master-card__name {
+    font-size: 22px;
+  }
+
+  .master-card__desc {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .master-card__rating {
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    font-size: 13px;
+  }
+
+  .master-card__btn {
+    align-self: stretch;
+    margin-top: auto;
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+}

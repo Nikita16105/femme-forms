@@ -29,8 +29,15 @@ html {
   scroll-padding-top: 88px;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
   background: var(--ivory);
   color: var(--text);
   font-family: var(--font-sans);
@@ -59,6 +66,18 @@ a {
 button {
   font-family: var(--font-sans);
   cursor: pointer;
+  touch-action: manipulation;
+}
+
+a {
+  touch-action: manipulation;
+}
+
+/* iOS Safari увеличивает страницу при фокусе на поле с шрифтом < 16px */
+input,
+select,
+textarea {
+  font-size: 16px;
 }
 
 img {
@@ -90,7 +109,27 @@ ul {
 
 @media (max-width: 900px) {
   .section {
-    padding: 64px 0;
+    padding: 56px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-heading {
+    font-size: 28px;
+  }
+
+  .section-intro {
+    font-size: 15px;
+  }
+
+  /* Кнопки удобнее нажимать пальцем */
+  .btn {
+    min-height: 48px;
+    padding: 14px 24px;
   }
 }
 

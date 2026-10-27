@@ -9,6 +9,9 @@ import "./Contacts.css";
 const MAP_LON = "37.484907";
 const MAP_LAT = "55.543706";
 const MAP_EMBED_SRC = `https://yandex.ru/map-widget/v1/?ll=${MAP_LON},${MAP_LAT}&z=17&l=map&pt=${MAP_LON},${MAP_LAT},pm2rdm`;
+// Ссылка на карточку организации — открывается в приложении Яндекс.Карт на телефоне
+// и служит подстраховкой, если встроенная карта не загрузится.
+const MAP_FULL_LINK = "https://yandex.ru/maps/-/CXeAaP7s";
 
 export default function Contacts() {
   return (
@@ -47,6 +50,9 @@ export default function Contacts() {
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />
+          <a className="contacts__map-link" href={MAP_FULL_LINK} target="_blank" rel="noreferrer">
+            Открыть на Яндекс.Картах →
+          </a>
         </Reveal>
       </div>
     </section>

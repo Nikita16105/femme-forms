@@ -1,8 +1,19 @@
 import { useState } from "react";
 import "./Hero.css";
 
+// Для телефонов — вертикальная версия ролика (в портретном кадре видны мастер и кабинет),
+// для планшетов и ПК — горизонтальная. Файлы лежат в public/videos/.
+const VIDEO_DESKTOP = "./videos/hero-massage.mp4";
+const VIDEO_MOBILE = "./videos/hero-massage-mobile.mp4";
+
+function pickVideo() {
+  if (typeof window === "undefined" || !window.matchMedia) return VIDEO_DESKTOP;
+  return window.matchMedia("(max-width: 700px)").matches ? VIDEO_MOBILE : VIDEO_DESKTOP;
+}
+
 export default function Hero({ onBookClick }) {
   const [videoFailed, setVideoFailed] = useState(false);
+  const [videoSrc] = useState(pickVideo);
 
   return (
     <section id="hero" className="hero">
@@ -10,15 +21,14 @@ export default function Hero({ onBookClick }) {
         {!videoFailed ? (
           <video
             className="hero__video"
+            src={videoSrc}
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
             onError={() => setVideoFailed(true)}
-          >
-            <source src="./videos/hero-massage.mp4" type="video/mp4" />
-          </video>
+          />
         ) : (
           <div className="hero__placeholder" />
         )}

@@ -21,3 +21,19 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+@media (max-width: 640px) {
+  .cta__title {
+    font-size: 28px;
+  }
+
+  .cta__actions {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .cta__actions .btn {
+    width: 100%;
+  }
+}

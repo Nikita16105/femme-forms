@@ -21,6 +21,7 @@
   background: var(--ivory);
   width: min(640px, 100%);
   max-height: 88vh;
+  max-height: 88dvh;
   display: flex;
   flex-direction: column;
   box-shadow: 0 30px 80px rgba(36, 24, 17, 0.3);
@@ -58,6 +59,7 @@
   padding: 24px 30px;
   overflow-y: auto;
   flex: 1;
+  min-height: 0;
 }
 
 .booking-panel__footer {
@@ -363,23 +365,112 @@
 
   .booking-panel {
     width: 100%;
-    max-height: 92vh;
+    height: 94vh;
+    height: 94dvh;
+    max-height: 94vh;
+    max-height: 94dvh;
     border-radius: 0;
+  }
+
+  .booking-panel__close {
+    top: 10px;
+    right: 8px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .booking-panel__steps {
+    padding: 18px 56px 0 18px;
+  }
+
+  .booking-panel__body {
+    padding: 18px 18px;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .booking-panel__footer {
+    padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--ivory);
+  }
+
+  .booking-panel__footer .btn {
+    min-height: 52px;
+  }
+
+  .booking-step-block h3 {
+    font-size: 22px;
   }
 
   .booking-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .booking-grid--time {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .booking-option {
+    padding: 16px;
+    min-height: 56px;
+  }
+
+  .booking-option--time {
+    justify-content: center;
+    min-height: 52px;
+  }
+
+  .booking-tabs {
+    margin: 0 -18px 14px;
+    padding: 2px 18px 6px;
+    scrollbar-width: none;
+  }
+
+  .booking-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .booking-tab {
+    min-height: 40px;
+    flex-shrink: 0;
+  }
+
+  .booking-calendar__weekdays,
+  .booking-calendar__grid {
+    gap: 4px;
+  }
+
+  .booking-calendar__day {
+    min-height: 42px;
+  }
+
+  .booking-calendar__nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .booking-field input {
+    padding: 15px 14px;
+    font-size: 16px;
+  }
+
   .booking-summary {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .booking-confirmed__actions {
     flex-direction: column;
   }
+
+  .booking-confirmed__actions .btn {
+    width: 100%;
+    min-height: 52px;
+  }
+}
+
+.booking-step-block > .booking-tabs {
+  margin-top: 16px;
 }

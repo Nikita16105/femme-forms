@@ -6,14 +6,24 @@
   z-index: 100;
   background: transparent;
   transition: background-color 0.4s var(--ease), box-shadow 0.4s var(--ease), padding 0.4s var(--ease);
-  padding: 26px 0;
+  padding: calc(26px + env(safe-area-inset-top, 0px)) 0 26px;
 }
 
 .header--scrolled {
   background: rgba(245, 239, 227, 0.92);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 1px 0 var(--line);
-  padding: 16px 0;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) 0 16px;
+}
+
+/* Когда открыто мобильное меню — шапка становится сплошной и тёмной по тексту */
+.header--menu-open,
+.header--menu-open.header--scrolled {
+  background: var(--ivory);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .header__row {
@@ -31,7 +41,8 @@
   transition: color 0.4s var(--ease);
 }
 
-.header--scrolled .header__logo {
+.header--scrolled .header__logo,
+.header--menu-open .header__logo {
   color: var(--brown);
 }
 
@@ -77,31 +88,46 @@
   padding: 11px 24px;
 }
 
+/* Пока шапка прозрачная над тёмным видео — кнопка светлая */
+.header:not(.header--scrolled) .header__cta {
+  background: var(--ivory);
+  color: var(--brown);
+}
+
+.header:not(.header--scrolled) .header__cta:hover {
+  background: var(--sand);
+}
+
 .header__burger {
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  width: 34px;
-  height: 34px;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
   background: none;
   border: none;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .header__burger span {
   display: block;
-  height: 1px;
+  width: 24px;
+  height: 1.5px;
   background: var(--sand-soft);
   transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), background-color 0.4s var(--ease);
 }
 
-.header--scrolled .header__burger span {
+.header--scrolled .header__burger span,
+.header--menu-open .header__burger span {
   background: var(--brown);
 }
 
 .header__burger--open span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(7.5px) rotate(45deg);
 }
 
 .header__burger--open span:nth-child(2) {
@@ -109,18 +135,26 @@
 }
 
 .header__burger--open span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
-.header__mobile {
+/* ---------- Мобильное меню (отдельно от <header>) ---------- */
+.mobile-menu {
   display: none;
 }
 
 @media (max-width: 860px) {
-  .header__nav {
-    display: none;
+  .header,
+  .header--scrolled {
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+    padding-bottom: 14px;
   }
 
+  .header__logo {
+    font-size: 22px;
+  }
+
+  .header__nav,
   .header__cta {
     display: none;
   }
@@ -129,38 +163,54 @@
     display: flex;
   }
 
-  .header__mobile {
+  .mobile-menu {
     position: fixed;
-    inset: 0;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 90;
     background: var(--ivory);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 36px;
-    transform: translateY(-8px);
+    gap: 40px;
+    padding: 80px 24px calc(32px + env(safe-area-inset-bottom, 0px));
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+    transition: opacity 0.3s var(--ease), visibility 0s linear 0.3s;
+    overscroll-behavior: contain;
   }
 
-  .header__mobile--open {
+  .mobile-menu--open {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
     pointer-events: auto;
+    transition: opacity 0.3s var(--ease), visibility 0s;
   }
 
-  .header__mobile nav {
+  .mobile-menu__nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 26px;
+    gap: 6px;
   }
 
-  .header__mobile nav a {
+  .mobile-menu__nav a {
     font-family: var(--font-serif);
-    font-size: 28px;
+    font-size: 30px;
+    line-height: 1.2;
     color: var(--brown);
+    padding: 10px 24px;
+  }
+
+  .mobile-menu__cta {
+    width: 100%;
+    max-width: 320px;
+    min-height: 52px;
   }
 }

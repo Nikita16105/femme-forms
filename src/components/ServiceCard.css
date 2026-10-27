@@ -69,3 +69,24 @@
   padding: 9px 18px;
   font-size: 13px;
 }
+
+@media (max-width: 640px) {
+  .service-card__body {
+    padding: 20px 18px 18px;
+  }
+
+  .service-card__title {
+    font-size: 20px;
+  }
+
+  .service-card__link {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+
+  .service-card__book {
+    min-height: 44px;
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+}

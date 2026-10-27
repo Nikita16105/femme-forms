@@ -70,3 +70,15 @@
     gap: 28px;
   }
 }
+
+@media (max-width: 860px) {
+  .footer {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer__nav a,
+  .footer__contacts a {
+    display: inline-block;
+    padding: 4px 0;
+  }
+}
